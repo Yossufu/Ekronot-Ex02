@@ -718,119 +718,6 @@ bool checkWordDoesNotExistInStatus(std::string status, const std::string& word)
 	return status.find(word) == std::string::npos;
 }
 
-bool test3Bonus()
-{
-	// Tests Ex2 part 3 - Profile
-	set_console_color(PURPLE);
-	cout <<
-		"****************************\n" <<
-		"Test 3 Bonus - Word Change				\n" <<
-		"****************************\n" << endl;
-
-	set_console_color(WHITE);
-	cout <<
-		"Initializing 2 Devices: ... \n" << endl;
-
-	Device device1;
-	device1.init(2123, LAPTOP, WINDOWS11);
-
-	Device device2;
-	device2.init(3212, PC, UbuntuOS);
-
-	cout <<
-		"Initializing user1: ... \n" << endl;
-
-	User user1;
-	user1.init(123456789, "Gal", 17);
-
-	cout <<
-		"Creating a profile for the user with random status and posts: ... \n" << endl;
-
-	Profile profile1;
-	profile1.init(user1);
-
-	generateRandomPage(profile1);
-	std::string got = getProfileString(profile1);
-	cout << got << endl;
-
-	cout <<
-		"Changing all words in the status to \"Magshimim\": ... \n" << endl;
-	profile1.changeAllWordsInStatus("Magshimim");
-	got = getProfileString(profile1);
-	cout << got << endl;
-
-	// cutting the status out of the page
-	std::string statusToCheck = profile1.getPage();
-	statusToCheck = statusToCheck.substr(8, statusToCheck.length());
-	statusToCheck = statusToCheck.substr(0, statusToCheck.find_first_of('\n'));
-	
-	// if there is one word that is different from the other return false
-	if (checkAllWordsAreAlikeInStatus(statusToCheck) == false)
-	{
-		set_console_color(RED);
-		cout << "FAILED: There are words different than \"Magshimim\" in the status" << endl;
-		set_console_color(WHITE);
-		return false;
-	}
-
-	cout <<
-		"Initializing a user1: ... \n" << endl;
-
-	User user2;
-	user2.init(123456789, "Nitzan", 12);
-
-	cout <<
-		"Creating a profile for the user with random status and posts: ... \n" << endl;
-
-	Profile profile2;
-	profile2.init(user2);
-
-	generateRandomPage(profile2);
-	got = getProfileString(profile2);
-	cout << got << endl;
-
-	std::string word_to_replace = "you";
-	std::string replacement = "MMMMMMMMMM";
-
-	cout <<
-		"Changing the word \"" << word_to_replace << "\" in the status to \"" << replacement << "\": ... \n" << endl;
-	profile2.changeWordInStatus(word_to_replace, "MMMMMMMMMM");
-	got = getProfileString(profile2);
-	cout << got << endl;
-
-	// cutting the status out of the page
-	statusToCheck = profile2.getPage();
-	statusToCheck = statusToCheck.substr(8, statusToCheck.length());
-	statusToCheck = statusToCheck.substr(0, statusToCheck.find_first_of('\n'));
-	
-	// checks that the word is not in the status
-	if (checkWordDoesNotExistInStatus(statusToCheck, word_to_replace) == false)
-	{
-		set_console_color(RED);
-		cout << "The word \"" << word_to_replace << "\" appers in the status" << endl;
-		set_console_color(WHITE);
-		return false;
-	}
-
-	cout <<
-		"\nClears User objects: ... \n" << endl;
-
-	user1.clear();
-	user2.clear();
-
-	cout <<
-		"\nClears User objects: ... \n" << endl;
-
-	profile1.clear();
-	profile2.clear();
-
-	set_console_color(LIGHT_GREEN);
-	std::cout << "\n########## Profile Bonus - TEST Passed!!! ##########\n\n";
-	set_console_color(WHITE);
-
-	return true;
-}
-
 bool test4SocialNetwork()
 {
 	bool result = false;
@@ -1069,7 +956,7 @@ int main()
 	bool test1Result = test1Device();
 	bool test2Result = test2User();
 	bool test3Result = test3Profile();
-	bool test3BResult = test3Bonus();
+	//bool test3BResult = test3Bonus(); removed
 	bool test4Result = test4SocialNetwork();
 
 	if (test1Result && test2Result && test3Result)
@@ -1077,7 +964,7 @@ int main()
 		set_console_color(GREEN);
 		std::cout << "\n########## Ex2 Tests Passed!!! ##########\n" << goodJob() <<
 					"\n\t\t\tYou are amazing!!!\n" << 
-					(test3BResult ? "\t\t\tAnd you also did the bonus, that's wonderful!!!" : "") << "\n\n";
+					 ("no bonus") << "\n\n";
 		set_console_color(WHITE);
 	}
 	else

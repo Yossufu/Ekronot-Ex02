@@ -49,13 +49,11 @@ std::string Profile::getFriends()
         friends += curr->get_data().getUserName() + ",";
         curr = curr->get_next();
     }
-
     // Remove the trailing comma if there are friends
     if (!friends.empty())
     {
         friends.pop_back();
     }
-
     return friends;
 }
 
@@ -63,7 +61,6 @@ std::string Profile::getFriendsWithSameNameLength()
 {
     std::string friends;
     UserNode* curr = this->lst.get_first();
-
     while (curr != nullptr)
     {
         if (curr->get_data().getUserName().length() == this->owner.getUserName().length())
@@ -72,12 +69,10 @@ std::string Profile::getFriendsWithSameNameLength()
         }
         curr = curr->get_next();
     }
-
     // Remove the trailing comma if there are friends
     if (!friends.empty())
     {
         friends.pop_back();
     }
-
     return friends;
 }
